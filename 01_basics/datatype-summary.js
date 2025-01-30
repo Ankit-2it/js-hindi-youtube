@@ -44,3 +44,40 @@ console.log(typeof anotherId);
 
 
 // https://262.ecma-international.org/5.1/#sec-11.4.3
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//                   Stack and Heap Memory
+
+// Stack (Primitive), Heap (Non-Primitive)
+//    |                        |
+//    |                        |
+// whenever we take a key, copy|is passed
+//                             |
+//whenever we take a key, reference is passed
+
+
+//Stack (Primitive)
+let myBestFriendIs = "NoOne"
+
+let nowMyBestFriend = myBestFriendIs
+nowMyBestFriend = "Gourav"      //here the original value is not affecting but the coied value get updated
+
+console.log(myBestFriendIs);
+console.log(nowMyBestFriend);
+
+
+// Heap (Non-Primitive)
+
+let userOne = {
+    email: "xray@zoom.com",
+    upi: "merahai@okaxis"
+}
+
+let userTwo = userOne
+
+userTwo.email = "coffee@bru.com"  //[here the address of actual value is passed so the original value is updated]
+
+
+console.log(userOne.email);
+console.log(userTwo.email);
