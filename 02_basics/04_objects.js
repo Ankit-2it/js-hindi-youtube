@@ -61,10 +61,45 @@ const users = [
 users[1].email = "xray.com"
 // console.log(users);
 
-console.log(Object.keys(tinderUser));  //return Keys in Array
-console.log(Object.values(tinderUser).length);     ////return vlaues in Array
+// console.log(Object.keys(tinderUser));  //return Keys in Array
+// console.log(Object.values(tinderUser).length);     ////return vlaues in Array
 
-console.log(Object.entries(tinderUser))     //[ [ 'name', 'Ankit' ], [ 'age', 22 ], [ 'email', 'xuv@bazaz.com' ] ]
+// console.log(Object.entries(tinderUser))     //[ [ 'name', 'Ankit' ], [ 'age', 22 ], [ 'email', 'xuv@bazaz.com' ] ]
 
 
-console.log(tinderUser.hasOwnProperty("email"));  //to check before looping a big array of objects
+// console.log(tinderUser.hasOwnProperty("email"));  //to check before looping a big array of objects
+
+
+//+++++++++++++++++++++++++++++ Object destructure +++++++++++++++++++++++++++++++++++
+
+const course = {
+    courseName : "JS in Hindi",
+    price : "free",
+    courseInstuctor : "Hitesh Choudhary"
+}
+
+// console.log(course.courseInstuctor);
+
+const {courseInstuctor: instruc} = course    //destructuring the property courseInstuctor from course object and assigning it a new name
+
+console.log(instruc);
+
+
+//++++++++++++++++++++++++++ API +++++++++++++++++++++++++++++++
+
+// all the data comes from a storage in JSON format
+
+{
+    "name" : "Ankit",                       //format like object
+    "age" : 22,
+    "email" : "hh@jk.com",
+    "isWorking" : true
+}
+
+// API : https://api.github.com/users/Ankit-2it 
+
+// tools to simplify JSON text : json formattor
+
+// random api  :  random user me api
+
+// API can either be in Array or Object
