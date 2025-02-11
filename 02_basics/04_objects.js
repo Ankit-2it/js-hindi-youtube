@@ -89,12 +89,12 @@ console.log(instruc);
 
 // all the data comes from a storage in JSON format
 
-{
-    "name" : "Ankit",                       //format like object
-    "age" : 22,
-    "email" : "hh@jk.com",
-    "isWorking" : true
-}
+// {
+//     "name" : "Ankit",                       //format like object
+//     "age" : 22,
+//     "email" : "hh@jk.com",
+//     "isWorking" : true
+// }
 
 // API : https://api.github.com/users/Ankit-2it 
 
