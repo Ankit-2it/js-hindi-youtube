@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing images</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+    // there are multiple events available
+
+    // applying onclick directly on image -> not a good approach | not a feasable approach
+    // <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick=" alert('OWL is clicked')"></li> 
+
+
+    // document.getElementById('owl').onclick = function(e){
+    //     alert('OWL is clicked!!')                           //  also not a very good approach
+    // }
+
+    // use eventListner: gives onclick + Propagation ability
+
+    // document.getElementById('owl').addEventListener('click', function(){
+    //     alert('this time OWL is clicked again!')
+    // })
+
+    // attachEvent()            (other approach used earlier)
+    // jQuerry - on             (other approach used earlier)
+
+
+    // document.getElementById('owl').addEventListener('click', function(e){    // e: event object, gives access to multiple events
+    //     console.log(e);
+    // }, false)
+
+    //   events that has to study properly:
+    //      type, timeStamp, defaultPrevent
+    //      target, toElement, srcElement, currentTarget
+    //      clientX, clientY, screenX, screenY
+    //      altkey, ctrlkey, shiftkey, keyCode
+
+
+    // Event Bubbeling or Event Capturing:
+
+    // Event Bubbeling
+    // document.getElementById('owl').addEventListener('click', function(e){    // e: event object, gives access to multiple events
+    //     console.log(e);
+    // }, false)            // bydefault --> false | mostly used
+
+    // Event Capturing
+    // document.getElementById('owl').addEventListener('click', function(e){    // e: event object, gives access to multiple events
+    //     console.log(e);
+    // }, true)
+
+    // @19:20 :: video
+
+
+    // document.getElementById('images').addEventListener('click', function(e){    // e: event object, gives access to multiple events
+    //     console.log("clicked inside the ul");
+    // }, false) //true)
+
+    // document.getElementById('owl').addEventListener('click', function(e){    // e: event object, gives access to multiple events
+    //     console.log("owl clicked !!");
+    //     e.stopPropagation();        // if we don't want bubbling: element remain separate, (the inner click should not affet the outer element)
+        
+    // }, false)
+
+    // // we want : if we click on link it would not propagate  ==>  e.preventDefault();
+    // document.getElementById('google').addEventListener('click', function(e) {
+    //     console.log("Google is clicked");
+    //     e.preventDefault();
+
+    //     e.stopPropagation();
+    // }, false)
+
+
+    // ## Challenge: if we click on any image, it should get hide
+
+    // document.querySelector('#images').addEventListener('click', function(e) {
+    //     // console.log(e.target);               // gives the whole <img> tag
+    //     console.log(e.target.parentNode);       // gives <img> -> parent i.e. <li>  |   we have to remove the whole <li> and not only the image inside it
+
+    //     let removeit = e.target.parentNode;
+    //     removeit.remove();                          // simplest way to remove element
+
+    //     // removeit.parentNode.removeChild(removeit)   // removeit.parentNode => <ul>  |   2nd way to remove child element
+
+    // }, false)
+
+
+    // ##Problem: if we click on Google link -> it removes the whole <ul> AS e.target = <li>  && e.target.parentNode = <ul>
+
+
+
+
+    document.querySelector('#images').addEventListener('click', function(e) {
+
+        console.log(e.target.tagName);          // gives the tagname 'IMG' or 'Li'
+
+        if(e.target.tagName === "IMG"){
+            console.log(e.target.id);
+            let removeit = e.target.parentNode;
+            removeit.remove(); 
+
+            // removeit.parentNode.removeChild(removeit)   
+
+        }
+                                 
+    }, false)
+</script>
+
+</html>
