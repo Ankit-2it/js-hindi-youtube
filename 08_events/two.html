@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Projects</title>
+</head>
+<body>
+    <h1>Creating Basic Project</h1>
+    <button id="stop">Stop</button>
+</body>
+
+<script>
+    // setTimeout(): Method that calling an API
+    // read -> clearInterval | clearTimeout
+
+    // setTimeout() : requires handler = callbackfunc AND timeout
+    // setTimeout(function(){
+    //     console.log("After 2 seconds");
+        
+    // }, 2000)
+
+    const callingFunc = function(){
+        console.log("Ankit, After 2 seconds");
+
+    }
+
+    const changeHeading = function(){
+        document.querySelector('h1').innerHTML="Changed the Heading using setTimeOut"
+    }
+    setTimeout(callingFunc, 2000)
+
+    const change = setTimeout(changeHeading, 2000)
+
+    document.querySelector('#stop').addEventListener('click', () => {
+        clearTimeout(change)
+        console.log("We have stopped already");
+        
+    })
+
+</script>
+</html>
