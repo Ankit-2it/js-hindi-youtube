@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="color: #fff; background-color: #212121;">
+    <pre>
+        Value	    State	            Description
+        0	    UNSENT	            Client has been created. open() not called yet.
+        1	    OPENED	            open() has been called.
+        2	    HEADERS_RECEIVED	    send() has been called, and headers and status are available.
+        3	    LOADING	            Downloading; responseText holds partial data.
+        4	    DONE	            The operation is complete.
+      
+
+    </pre>
+
+    <button id="details">Details</button>
+
+    <div id="card-container"></div>
+</body>
+
+<script>
+    // APIs : 
+    // 1. api.github.com/users/ankit-2it
+    // 2. randomuser.me/api/
+
+    // *. jsonformatter.org/
+
+
+    // XML - AJAX request
+    // XMLHttpRequest: class/method (through which request has sent or receive)
+
+    const xhr = new XMLHttpRequest
+
+    const requestUrl = 'https://api.github.com/users/ankit-2it'
+    // xhr.open('request', string)
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function () {        // xhr.onreadystatechange : track all the states from sending request to receiving responces
+        console.log(xhr.readyState);            // xhr.readyState : prints the state no (2,3,4,5)
+        if (xhr.readyState === 4) {
+            // console.log(this.responseText);     // this.responseText : provides all the details of url
+            const data = JSON.parse(this.responseText)
+            console.log(typeof data);
+            console.log(data);
+
+            console.log(data.followers);        // to access the followers as object's value
+
+            document.getElementById('details').addEventListener('click', function () {
+                // selecting the container where the card will be added
+                const container = document.getElementById('card-container')
+
+                // Create a card element and set its innerHTM
+                const card = document.createElement('div')
+                card.innerHTML = `
+                <div style="text-align: center; border: 1px solid #ccc; padding: 20px; width: 200px; margin: 10px; border-radius: 8px; background-color: #f9f9f9; color: #212121">
+                    <img src="https://avatars.githubusercontent.com/u/141313766?v=4" alt="Profile picture" style="width:100%">
+                    <h3>Ankit Kumar</h3>
+                    <p style="">Followers : ${data.followers}</p>
+                </div>
+
+
+                `;
+
+                // Append the card to the container
+                container.appendChild(card)
+            })
+        }
+    }
+    xhr.send()
+
+
+</script>
+
+</html>
