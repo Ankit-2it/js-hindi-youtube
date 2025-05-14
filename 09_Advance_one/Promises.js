@@ -9,7 +9,7 @@
 // const promiseOne = new Promise(function(resolve, reject){})      //instance(new) is same as class
 
 // const promiseOne = new Promise(function(resolve, reject){
-//     //Do an async tast (DB calls, cryptography, network)
+//     //Do an async task (DB calls, cryptography, network)
 
 //     setTimeout(function(){
 //         console.log('Async task is completed');
@@ -72,7 +72,7 @@
 //     return(user.userid);
     
 // }).then((myuserid) => {         //if returning the value in 1st then, 
-//     console.log(myuserid);      //to access that value another ".then" is applied, which hold that vlaue
+//     console.log(myuserid);      //to access that value in another ".then" is applied, which hold that vlaue
     
 // })
 // .catch((err) => {
@@ -141,3 +141,33 @@ fetch('https://jsonplaceholder.typicode.com/posts')
 })
 .catch((error) => console.log(error)
 )
+
+// fetch was available in Browser earlie Later it was added in node also(2022)
+
+// we have seen in the picture that 
+// in the CALL STACK some func. sent special request to web api ka SetTimeout ko
+// that setTimeout register a callback after some interval then it(callback) goes to TaskQueue
+// from there it again added to CALL STACK
+
+// but here fetch(), [wheteher from Web/Node] sends a special callback in queue called: Micro Task Queue/ Priority Queue/ Micro Queue
+// the callback from FETCH() is prioratised than SetTimeout, it would be executed first (callback from fetch())
+
+
+// From Fetch-data-access image:-
+
+// whenever we write: response = fetch('hjklhjk')
+                                //     /      \
+                                //    /        \_____________________ Web Browser/node
+                                // __/                                         \
+// store variables to store coming data                                         \
+// 1. Data:    {store the result whether form response/reject}                 network request
+// 2. OnFulfield[] {response}                                                      /   \
+// 3. OnRejection[] {reject}                                                      /     \
+//                                                                             response  \
+//                                                                                      reject
+
+// whenever we write: response = fetch('hjklhjk'), two task start to perform 
+// one is variable creation: for stoing the values
+// other is on web/node : network request (whick will either response or reject and store in OnFulfield[] or OnRejection[])
+// any of the value form response or reject will store in [Data:_____] as OnFulfield[] or OnRejection[] has func. which is responsible to fulfil the DATA:
+// once Data:___ is fulfiled, response is available in Global Memory and executed
