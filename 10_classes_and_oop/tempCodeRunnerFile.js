@@ -1,17 +1,20 @@
-function createUser(username, score){
-    this.username = username            // this means iss context(createUser)
-    this.score = score
+const user = function(name, email, password){
+    this.name = name;
+    this.email = email;
+    this.password = password;
 }
 
-createUser.prototype.increment = function(){    //creating self made protoype in the function rupi obj
-    this.score++  
+user.prototype.encryptPassword = () => {
+    return(`${this.password}#abc`);
 }
 
-createUser.prototype.printavlaues = () => {
-    console.log(`score is: ${this.score}`)
+user.prototype.changeName = () => {
+     return `${this.name.toUpperCase()}`
 }
 
-// console.log(createUser.prototype);      //properties are injected but cant be accessed
 
-const ankit = new createUser('Ankit', '49')
-ankit.printavlaues()
+const Ankit = new user('Pinku', 'Pinki@papa', 'shaktiman')
+
+
+// console.log(Ankit.encryptPassword());
+console.log(Ankit.changeName());
