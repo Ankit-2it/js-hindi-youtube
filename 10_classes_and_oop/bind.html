@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Click Button</button>
+    
+</body>
+<script>
+        class React{
+            constructor(){
+                this.label = "ankit"
+                this.server = "https://localhost:300/"
+
+                document.querySelector("button").addEventListener('click', this.onClick.bind(this)) //using BIND      //reference
+                        // using the bind: the access of all the variables or data has gone with bind [now that function can access the variable inside the constructor as reference is given with 'bind']
+            }
+
+            // requirement: once the page gets load, a new object is created 
+            //              button ka reference mil jaye
+            //              button click krne pr koi message dikh jaye
+        
+            onClick(){
+                console.log("Button is clicked");
+                console.log(`Server is: ${this.server}`);
+                                
+            }
+        }
+        const app = new React
+
+
+    </script>
+</html>
